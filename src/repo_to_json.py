@@ -95,7 +95,7 @@ def get_filelist(directory):
     file_list = []
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith('.java'):
+            if file.endswith('.py'):
                 file_list.append(root + '/' + file)
 
     return file_list
