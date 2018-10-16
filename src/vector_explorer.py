@@ -57,7 +57,7 @@ for i in range(6):
 for i in range(len(nparray[0])):
     plt.annotate(
         labels[i],
-        xy=(clusters[i][0], clusters[i][1])
+        xy=(nparray[i][0], nparray[i][1])
     )
 
 plt.show()
