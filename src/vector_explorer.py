@@ -53,6 +53,13 @@ fig, ax = plt.subplots()
 for i in range(6):
     clusters.append(nparray[np.where(ndx == i)[0], :])
     ax.scatter(clusters[i][:, 0], clusters[i][:, 1], s=30, color=colors[i], label='Cluster ' + str(i))
+    
+for i in range(len(nparray[0])):
+    plt.annotate(
+        labels[i],
+        xy=(clusters[i][0], clusters[i][1])
+    )
+
 plt.show()
 
 
