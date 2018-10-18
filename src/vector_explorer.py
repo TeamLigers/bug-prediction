@@ -10,7 +10,12 @@ model = Py2Vec(os.getcwd() + "\py2vec\Lab41.json")
 
 with open("py2vec\py2vec_model3.pkl", "rb") as f:
     embeddings = pickle.load(f)
-
+with open("py2vec\cen.pkl", "rb") as f:
+    cen = pickle.load(f)
+with open("py2vec\parray.pkl", "rb") as f:
+    nparray = pickle.load(f)
+with open("py2vec\index.pkl", "rb") as f:
+    ndx = pickle.load(f)
 Lab41Embeddings = json.load(open(os.getcwd() + "\py2vec\Lab41.json"))
 
 
@@ -21,9 +26,9 @@ def kmeans(data, k, num_iter):
     for i in range(num_iter):
         for j in range(data.shape[0]):
             min_dist = np.sum((data[j, :] - centroids[0, :])**2)
-            for l in range(k):
+            for l in range(1, k):
                 dist = np.sum((data[j, :] - centroids[l, :])**2)
-                if dist <= min_dist:
+                if dist < min_dist:
                     min_dist = dist
                     c[j] = l
         for j in range(k):
@@ -31,20 +36,23 @@ def kmeans(data, k, num_iter):
             centroids[j, :] = np.sum(data[clusters, :], axis=1) / len(clusters[0])
     return centroids, c
 
+
 def get_low_dim_embs(vectors):
     tsne = TSNE(
         perplexity=30, n_components=2, init='pca', n_iter=250)
     return tsne.fit_transform(vectors)
 
-nparray = []
+#nparray = []
+labels = []
 for key, value in Lab41Embeddings.items():
-    nparray.append(value)
+    #nparray.append(value)
+    labels.append(key)
 
 
-nparray = np.asarray(nparray)
-nparray = get_low_dim_embs(nparray)
-cen, ndx = kmeans(nparray, 6, 50)
-print(cen)
+# nparray = get_low_dim_embs(nparray)
+# print(nparray.shape)
+# cen, ndx = kmeans(nparray, 6, 50)
+# print(cen)
 
 
 colors = ['r', 'g', 'b', 'y', 'm', 'c']
@@ -53,13 +61,13 @@ fig, ax = plt.subplots()
 for i in range(6):
     clusters.append(nparray[np.where(ndx == i)[0], :])
     ax.scatter(clusters[i][:, 0], clusters[i][:, 1], s=30, color=colors[i], label='Cluster ' + str(i))
-    
-for i in range(len(nparray[0])):
-    plt.annotate(
-        labels[i],
-        xy=(nparray[i][0], nparray[i][1])
-    )
 
+z = 0
+for i in range(nparray.shape[0]):
+    plt.text(nparray[z][0], nparray[z][1], labels[z])
+    z = z + 50
+    if z >= nparray.shape[0]:
+        break
 plt.show()
 
 
@@ -115,8 +123,12 @@ def plot2():
 
 #plot()
 
-
-
+# with open("py2vec\cen.pkl", "wb+") as f:
+#     pickle.dump(cen, f)
+# with open("py2vec\parray.pkl", "wb+") as f:
+#     pickle.dump(nparray, f)
+# with open("py2vec\index.pkl", "wb+") as f:
+#     pickle.dump(ndx, f)
 
 
 # print(str(model['if']) + "\n\n\n\n\n")
