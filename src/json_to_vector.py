@@ -93,7 +93,7 @@ words = code_lines.rdd\
     .filter(lambda line: line != [])
 
 
-# Initialize Word2Vec object
+# Initialize Word2Vec object.
 word2vec = Word2Vec()
 
 # Set the minimum number of times a word needs to appear in the dataset
