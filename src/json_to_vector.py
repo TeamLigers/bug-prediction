@@ -83,7 +83,7 @@ def StringTokenizer(codeString):
 
 
 # Process the json file by extracting the lines of code, tokenizing
-# the code, lower casing it, and filtering out empty words. This gives us
+# the code, lower casing it, and filtering out empty lines. This gives us
 # a dataset of tokenized source code that is ready to be fed into word2vec.
 words = code_lines.rdd\
     .map(
