@@ -49,7 +49,7 @@ This project was sponsored by Jean Kirschner and Jason Snouffer at ASRC Federal.
 
 [Lab41/hermes supplied some code for downloading source code (most of which we heavily modified)](https://github.com/Lab41/hermes/tree/master/src/utils/code_etl)
 
-Although at some point I would like to get rid of Lab41's and remake it myself because we are only using a handful of functions from them and would like to have everything be my own work. Really the only thing we use their code for is downloading repos and walking throughing directories.
+Although at some point I would like to get rid of Lab41's and remake it myself because we are only using a handful of functions from them and would like to have everything be my own work. Really the only thing we use their code for is downloading repos and walking through directories.
 
 ## Licence (MIT)
 This project and source-code are published under the MIT License which allows very broad use for both academic and commercial purposes.
